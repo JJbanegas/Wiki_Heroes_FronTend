@@ -1,3 +1,4 @@
+import './Cards.css'
 import { Card } from 'antd';
 const { Meta } = Card;
 
@@ -7,7 +8,7 @@ const PjCard = (props) => {
     <Card
       hoverable
       style={{ width: 240 }}
-      cover={<img alt="example" src= {pj.Image} />}
+      cover={<img className="cardImg" alt="example" src= {pj.Image} />}
     >
       <Meta title={pj.heroName} description={pj.firstName +' '+ pj.lastName} />
     </Card>
