@@ -1,7 +1,6 @@
 import Card from './Cards'
 import './CardsPage.css'
 
-
 const CardList = (props) => {
   return(
     <div className="cardPage">
