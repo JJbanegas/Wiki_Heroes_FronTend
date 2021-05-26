@@ -1,4 +1,4 @@
-#components-layout-demo-fixed .logo {
+/*#components-layout-demo-fixed .logo {
     float: left;
     width: 120px;
     height: 31px;
@@ -7,9 +7,9 @@
   }
   .site-layout .site-layout-background {
     background-color: white;
-  }
+  }*/
 
-  .header{
-    background-image: url(../../Resources/heroes.jpg);
+  .btnLogIn{
+    justify-content: flex-end;
   }
   

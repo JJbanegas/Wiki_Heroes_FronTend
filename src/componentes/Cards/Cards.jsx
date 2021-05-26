@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css'
 import './Cards.css'
 import { Card } from 'antd';
 import React, {useState} from 'react';
