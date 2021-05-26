@@ -4,7 +4,8 @@ import { Layout, Menu } from 'antd';
 import 'antd/dist/antd.css'
 import {NavLink} from 'react-router-dom';
 import {Routes, Route} from 'react-router-dom'
-import CardsPage from '../Cards/CardsPage'
+//import CardsPage from '../Cards/CardsPage'
+import CardsPage from '../Cards/CardsPage&Drop'
 //import FilterDropdown from '../Dropdown/Dropdown'
 //import '../Layouts/Layout.css'
 const { Header, Content, Footer } = Layout;

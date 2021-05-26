@@ -1,6 +1,7 @@
 import '../Cards/Cards.css'
 import React, { Modal } from 'antd'
 import { Image } from 'antd';
+import Comment from '../Comments/Comments'
 
 
 const heroCardModal = (props) => {
@@ -31,6 +32,10 @@ const heroCardModal = (props) => {
         <p>{pj.firstName}</p>
         <p>{pj.lastName}</p>
         <p>{pj.universe}</p>
+        <Comment/>
+        <Comment/>
+        <Comment/>
+        <Comment/>
       </Modal>
     </>
   )
