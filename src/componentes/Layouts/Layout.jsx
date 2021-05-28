@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Menu } from 'antd';
 import {NavLink} from 'react-router-dom';
 import {Routes, Route} from 'react-router-dom'
-import CardsPage from '../Cards/CardsPage'
+import CardsPage from '../Cards/CardsPage&Drop'
 import LogIn from '../LogIn/LogInPage'
 import '../Layouts/Layout.css'
 const { Header, Content, Footer } = Layout;
