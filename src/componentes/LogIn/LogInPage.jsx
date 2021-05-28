@@ -1,6 +1,6 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import axios from 'axios';
-import {useState} from 'react'
+//import {useState, useEffect} from 'react'
 //import {Routes, Route} from 'react-router-dom'
 //import {NavLink} from 'react-router-dom';
 
@@ -13,15 +13,18 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const Demo = () => {
+const Demo = ({setToken}) => {
 
-  const[token, setToken] = useState("")
+
+  const setearToken = (token) =>{
+    setToken(token)
+  }
 
   const onFinish = async (values) => {
-    console.log('Success:', values);
     const response = await axios.post(`http://localhost:8080/api/users/singnin`, values)
-    await setToken(response.data.token)
-    console.log("Token actual", token)
+    setearToken(response.data.token)
+    localStorage.setItem("x-access-token", response.data.token)
+    setToken(response.data.token)
   };
   
   const onFinishFailed = (values) => {
