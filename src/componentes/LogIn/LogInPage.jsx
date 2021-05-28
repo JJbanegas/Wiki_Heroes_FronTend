@@ -21,15 +21,25 @@ const Demo = ({setToken}) => {
   }
 
   const onFinish = async (values) => {
-    const response = await axios.post(`http://localhost:8080/api/users/singnin`, values)
-    setearToken(response.data.token)
-    localStorage.setItem("x-access-token", response.data.token)
-    setToken(response.data.token)
+    try {
+      const response = await axios.post(`http://localhost:8080/api/users/singnin`, values)
+      setearToken(response.data.token)
+      localStorage.setItem("x-access-token", response.data.token)
+      setToken(response.data.token)
+      window.location.assign("/heroes")
+    } catch (error) {
+      const valid = true
+      throw error
+    }
   };
   
   const onFinishFailed = (values) => {
     console.log('Failed:', values);
   };
+
+  /*const redirect = () => {
+    window.location.assign("/heroes")
+  }*/
 
   return (
     <Form
@@ -60,12 +70,12 @@ const Demo = ({setToken}) => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit"> 
+        <Button type="primary" htmlType="submit" > 
             Submit
         </Button>
       </Form.Item>
     </Form>
   );
 };
-
+//window.location.href
 export default Demo
