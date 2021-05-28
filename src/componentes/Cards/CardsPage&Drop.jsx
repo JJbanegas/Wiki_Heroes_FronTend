@@ -20,8 +20,12 @@ const CardsPage = () => {
   }
 
   const getAllHeroes = async () => {
-    const response = await axios.get(`http://localhost:8080/api/heroes`)
-    addNewProfile(response.data)
+    const order = localStorage.getItem("x-access-token")
+    console.log('token del local', order)
+    if(order){
+      const response = await axios.get(`http://localhost:8080/api/heroes`)
+      addNewProfile(response.data)
+    }
   }
 
   const getSidedHeroes = async (side) =>{
@@ -31,6 +35,7 @@ const CardsPage = () => {
 
   useEffect(() =>{
     getAllHeroes()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
     function handleButtonClick(e) {

@@ -13,8 +13,11 @@ function CardsPage() {
   }
 
   const getAllHeroes = async () =>{
+    const order = await localStorage.getItem("x-access-token")
+    if(order){
     const response = await axios.get(`http://localhost:8080/api/heroes`)
     addNewProfile(response.data)
+    }
   }
 
   useEffect(() =>{
