@@ -15,6 +15,16 @@ const tailLayout = {
 
 const Demo = ({setToken}) => {
 
+ /* var currpage    = window.location.href;
+  var lasturl     = sessionStorage.getItem("last_url");
+
+  if(lasturl == null || lasturl.length === 0 || currpage !== lasturl ){
+      sessionStorage.setItem("last_url", currpage);
+      alert("New page loaded");
+  }else{
+      alert("Refreshed Page");  
+  }*/
+
 
   const setearToken = (token) =>{
     setToken(token)
