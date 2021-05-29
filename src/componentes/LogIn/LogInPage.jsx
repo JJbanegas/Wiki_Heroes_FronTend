@@ -15,17 +15,6 @@ const tailLayout = {
 
 const Demo = ({setToken}) => {
 
- /* var currpage    = window.location.href;
-  var lasturl     = sessionStorage.getItem("last_url");
-
-  if(lasturl == null || lasturl.length === 0 || currpage !== lasturl ){
-      sessionStorage.setItem("last_url", currpage);
-      alert("New page loaded");
-  }else{
-      alert("Refreshed Page");  
-  }*/
-
-
   const setearToken = (token) =>{
     setToken(token)
   }
@@ -35,13 +24,17 @@ const Demo = ({setToken}) => {
       const response = await axios.post(`http://localhost:8080/api/users/singnin`, values)
       setearToken(response.data.token)
       localStorage.setItem("x-access-token", response.data.token)
-      setToken(response.data.token)
       window.location.assign("/heroes")
+      setToken(response.data.token)
     } catch (error) {
-      const valid = true
+      //const valid = true
       throw error
     }
   };
+
+  const handleSignUp = () => {
+    window.location.assign("/signup")
+  }
   
   const onFinishFailed = (values) => {
     console.log('Failed:', values);
@@ -83,6 +76,9 @@ const Demo = ({setToken}) => {
         <Button type="primary" htmlType="submit" > 
             Submit
         </Button>
+        <Button onClick={handleSignUp}>
+          Sing Up
+          </Button>
       </Form.Item>
     </Form>
   );

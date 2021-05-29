@@ -5,6 +5,7 @@ import {Routes, Route} from 'react-router-dom'
 import CardsPage from '../Cards/CardsPage&Drop'
 import LogIn from '../LogIn/LogInPage'
 import UsersPage from '../Users/usersPage'
+import SignUp from '../SignUp/SignUpPage'
 import '../Layouts/Layout.css'
 import jwt from 'jsonwebtoken'
 const { Header, Content, Footer } = Layout;
@@ -61,7 +62,7 @@ const PrincipalLayout = () => {
                     <Route path ='/users' element = {<UsersPage />}/>
                     <Route path ='/heroes' element = {<CardsPage />}/>
                     <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>
-                    
+                    <Route path ='/signup' element = {<SignUp setToken={value => setToken(value)}/>}/>
                 </Routes>
             </div>
             </Content>
