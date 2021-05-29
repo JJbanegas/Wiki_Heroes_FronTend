@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Table, Space, Button} from 'antd'
 import 'antd/dist/antd.css'
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons'
-//import BookModal from './components/Modals/BookModal'
+import UserModifyModal from '../Modals/userModifyModal'
 
 
 
@@ -11,7 +11,7 @@ const UsersPage = (props) => {
 
 
   const [users, setUsers] = useState([])
-  //const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   
 
@@ -23,7 +23,7 @@ const UsersPage = (props) => {
   }
 
   const HandleOnClick = () => {
-    //setIsModalVisible(true)
+    setIsModalVisible(true)
   }
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const UsersPage = (props) => {
       <div>
         <h1>Books</h1>
         <Table dataSource = {users} columns = {columns} rowKey='_id' />
-        {/*<BookModal visible = {isModalVisible} setVisible = {setIsModalVisible}/>*/}
+        {<UserModifyModal visible = {isModalVisible} setVisible = {setIsModalVisible}/>}
       </div>
     )
 }

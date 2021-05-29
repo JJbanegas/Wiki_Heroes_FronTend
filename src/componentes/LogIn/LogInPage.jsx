@@ -26,19 +26,19 @@ const Demo = ({setToken}) => {
   }*/
 
 
-  const setearToken = (token) =>{
+  /*const setearToken = (token) =>{
     setToken(token)
-  }
+  }*/
 
   const onFinish = async (values) => {
     try {
       const response = await axios.post(`http://localhost:8080/api/users/singnin`, values)
-      setearToken(response.data.token)
       localStorage.setItem("x-access-token", response.data.token)
-      setToken(response.data.token)
+      await setToken(response.data.token)
       window.location.assign("/heroes")
+      //setearToken(response.data.token)
     } catch (error) {
-      const valid = true
+      //const valid = true
       throw error
     }
   };

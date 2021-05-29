@@ -14,16 +14,20 @@ const PrincipalLayout = () => {
     const[token, setToken] = useState()
     const[permission, setPermission] = useState()
 
+    const LogOut = () =>{
+        localStorage.clear()
+        window.location.assign("/")
+    }
+
     useEffect(()=>{
-        console.log(token)
         if(token){
             const rol = jwt.decode(token)
             if(rol.role){
-                console.log("rolaso", rol.role)
+                console.log("rolaso", rol.role.name)
                 setPermission(rol.role.name)
             }
         }
-      }, [token])
+    }, [token])
 
 
     return (
@@ -35,21 +39,28 @@ const PrincipalLayout = () => {
                 <Menu.Item key="1">
                     <NavLink to = '/'>
                         Log In
-                    </NavLink>              
+                    </NavLink>
                 </Menu.Item>
                 }
                 {(permission === "moderator" || permission === "admin" || permission === "user") &&
-                    <Menu.Item key="2">
+                    <Menu.Item key="1">
                         <NavLink to = '/heroes'>
                             Heroes
                         </NavLink>
-                    </Menu.Item> 
+                    </Menu.Item> /*&& window.location.assign("/heroes")*/
                 }
                 {(permission === "admin") &&
-                    <Menu.Item key="3"> 
-                    <NavLink to = '/users'>
-                        Users
-                    </NavLink>
+                    <Menu.Item key="2"> 
+                        <NavLink to = '/users'>
+                            Users
+                        </NavLink>
+                    </Menu.Item>
+                }
+                {(permission === "moderator" || permission === "admin" || permission === "user") &&
+                    <Menu.Item key="3">
+                        <div onClick={LogOut}>
+                            Log out
+                        </div>
                     </Menu.Item>
                 }
             </Menu>
@@ -59,9 +70,8 @@ const PrincipalLayout = () => {
             <div className="site-layout-background" style={{ padding: 150, minHeight: 360 }}>
                 <Routes>
                     <Route path ='/users' element = {<UsersPage />}/>
-                    <Route path ='/heroes' element = {<CardsPage />}/>
-                    <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>
-                    
+                    <Route path ='/heroes' element = {<CardsPage setToken={value => setToken(value)} />}/>
+                    <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>                  
                 </Routes>
             </div>
             </Content>

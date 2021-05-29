@@ -11,7 +11,7 @@ porque Cardspage es el padre, osea que le puede mandar info a travez de las prop
 no podía mandar la info del hijo al padre, no se si hay alguna forma de hacer eso.*/ 
 
 
-const CardsPage = () => {
+const CardsPage = ({setToken}) => {
     
   const [pj, setPj] = useState([])
 
@@ -35,6 +35,7 @@ const CardsPage = () => {
 
   useEffect(() =>{
     getAllHeroes()
+    setToken(localStorage.getItem("x-access-token"))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
