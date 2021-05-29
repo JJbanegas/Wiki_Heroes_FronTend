@@ -42,6 +42,10 @@ const Demo = ({setToken}) => {
       throw error
     }
   };
+
+  const handleSignUp = () => {
+    window.location.assign("/signup")
+  }
   
   const onFinishFailed = (values) => {
     console.log('Failed:', values);
@@ -83,6 +87,9 @@ const Demo = ({setToken}) => {
         <Button type="primary" htmlType="submit" > 
             Submit
         </Button>
+        <Button onClick={handleSignUp}>
+          Sing Up
+          </Button>
       </Form.Item>
     </Form>
   );
