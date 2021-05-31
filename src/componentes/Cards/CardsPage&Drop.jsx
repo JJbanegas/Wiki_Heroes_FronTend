@@ -3,7 +3,8 @@ import { UserOutlined } from '@ant-design/icons';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import CardsList from './CardsList'
-
+import PostHeroModal from '../Modals/PostHeroModal'
+import PostHero from '../Modals/PostHeroModal';
 
 /* Termine por fusionar el Dropdown con el CardsPage porque necesitaba manejar los datos 
 del axios en el mismo lugar, no pude pensar una forma en la cual trabajaran por separado,
@@ -78,6 +79,7 @@ const CardsPage = ({setToken}) => {
       <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
         Filter
       </Dropdown.Button>
+      <PostHeroModal/>
       <CardsList data = {pj}/>
     </Space>
     )
