@@ -3,6 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import CardsList from './CardsList'
+import { Alert } from 'antd';
 
 
 /* Termine por fusionar el Dropdown con el CardsPage porque necesitaba manejar los datos 
@@ -12,7 +13,8 @@ no podía mandar la info del hijo al padre, no se si hay alguna forma de hacer e
 
 
 const CardsPage = ({setToken}) => {
-    
+
+  const [error, setError] = useState()
   const [pj, setPj] = useState([])
 
   function addNewProfile(item){
@@ -21,10 +23,19 @@ const CardsPage = ({setToken}) => {
 
   const getAllHeroes = async () => {
     const order = localStorage.getItem("x-access-token")
-    console.log('token del local', order)
+    //console.log('token del local', order)
     if(order){
-      const response = await axios.get(`http://localhost:8080/api/heroes`)
-      addNewProfile(response.data)
+        await axios.get(`http://localhost:8080/api/heroes`, {
+        headers: {
+          Authorization: `${order}`
+        }
+      })
+      .then(response => { 
+        addNewProfile(response.data) 
+      }) 
+      .catch(err => { 
+        setError(err)
+      })
     }
   }
 
@@ -72,7 +83,7 @@ const CardsPage = ({setToken}) => {
     );
 
 
-    return (
+    return !(error) ? (
         
     <Space wrap>
       <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
@@ -80,7 +91,7 @@ const CardsPage = ({setToken}) => {
       </Dropdown.Button>
       <CardsList data = {pj}/>
     </Space>
-    )
+    ) : (<Alert message={error} type="error" />)
 }
 
 

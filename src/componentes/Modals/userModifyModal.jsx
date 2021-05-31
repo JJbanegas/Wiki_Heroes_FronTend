@@ -1,4 +1,5 @@
 import React, { Modal } from 'antd'
+import UserForm from '../Forms/userForm'
 
 
 const userModifyModal = (props) => {
@@ -20,9 +21,7 @@ const userModifyModal = (props) => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>holas</p>
-        <p>holas</p>
-        <p>holas</p>
+      <UserForm userValue = {props.userValue}/>
       </Modal>
     </>
   )

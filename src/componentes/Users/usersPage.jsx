@@ -12,6 +12,7 @@ const UsersPage = (props) => {
 
   const [users, setUsers] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modifyUser, setModifyUser] = useState()
 
   
 
@@ -22,7 +23,8 @@ const UsersPage = (props) => {
     getAllBooks()
   }
 
-  const HandleOnClick = () => {
+  const HandleOnClick = (event) => {
+    setModifyUser(event)
     setIsModalVisible(true)
   }
 
@@ -98,7 +100,7 @@ const UsersPage = (props) => {
       render: (text, row) => 
       <Space size= "middle">
         <Button type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() =>HandleOnDelete(row)}/>
-        <Button type="primary" shape="circle" icon={<EditOutlined />} onClick = {() => HandleOnClick()}/>
+        <Button type="primary" shape="circle" icon={<EditOutlined />} onClick = {() => HandleOnClick(row)}/>
       </Space>
     }
   ]
@@ -107,7 +109,7 @@ const UsersPage = (props) => {
       <div>
         <h1>Books</h1>
         <Table dataSource = {users} columns = {columns} rowKey='_id' />
-        {<UserModifyModal visible = {isModalVisible} setVisible = {setIsModalVisible}/>}
+        {<UserModifyModal visible = {isModalVisible} setVisible = {setIsModalVisible} userValue = {modifyUser}/>}
       </div>
     )
 }
