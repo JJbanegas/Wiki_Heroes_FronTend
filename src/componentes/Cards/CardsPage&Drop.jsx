@@ -18,7 +18,7 @@ no podía mandar la info del hijo al padre, no se si hay alguna forma de hacer e
 const CardsPage = (props) => {
 
 
-
+  const token = props.token
   const [error, setError] = useState()
   const [pj, setPj] = useState([])
 
@@ -45,7 +45,9 @@ const CardsPage = (props) => {
   }
 
   const getSidedHeroes = async (side) =>{
-    const response = await axios.get(`http://localhost:8080/api/heroes/?side=${side}`)
+    const response = await axios.get(`http://localhost:8080/api/heroes/?side=${side}`, { headers: {
+      Authorization: token
+    }})
     addNewProfile(response.data)
   }
 
@@ -76,6 +78,10 @@ const CardsPage = (props) => {
         const side = `villain`
         getSidedHeroes(side)
       }
+      if (e.key === "3") {
+        console.log('pasó por el 3')
+        getAllHeroes()
+      }
     }
     
     const menu = (
@@ -85,6 +91,9 @@ const CardsPage = (props) => {
         </Menu.Item>
         <Menu.Item key="2" icon={<UserOutlined />}>
          Villain
+        </Menu.Item>
+        <Menu.Item key="3" icon={<UserOutlined />} >
+          Hero
         </Menu.Item>
 
       </Menu>

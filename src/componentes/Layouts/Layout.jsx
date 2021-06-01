@@ -71,7 +71,7 @@ const PrincipalLayout = () => {
             <Content style={{ margin: '0 16px' }}>
             <div className="site-layout-background" style={{ padding: 150, minHeight: 360 }}>
                 <Routes>
-                    <Route path ='/users' element = {<UsersPage />}/>
+                    <Route path ='/users' element = {<UsersPage token={token}/>}/>
                     <Route path ='/heroes' element = {<CardsPage permission={permission} setToken={value => setToken(value) } token={token}/>}/>
                     <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>
                     <Route path ='/signup' element = {<SignUp setToken={value => setToken(value)}/>}/>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
-import PostHeroForm from '../Forms/PostHeroForm'
+import EditHeroForm from '../Forms/EditHeroForm'
 
-const PostHero = () => {
+
+const EditButton = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -20,13 +21,13 @@ const PostHero = () => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Post Hero
+        Edit
       </Button>
-      <Modal title="Post a character" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <PostHeroForm/>
+      <Modal title="Edit" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <EditHeroForm pj={props.pj} token={props.token}/>
       </Modal>
     </>
   );
 };
 
-export default PostHero
+export default EditButton

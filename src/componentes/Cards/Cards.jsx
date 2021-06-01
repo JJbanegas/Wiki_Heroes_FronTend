@@ -4,6 +4,7 @@ import { Card , Button} from 'antd';
 import React, {useState} from 'react';
 import HeroCardModal from '../Modals/heroCardModal'
 import axios from 'axios'
+import EditButton from '../EditCardButton/EditCardButton'
 
 const { Meta } = Card;
 
@@ -11,6 +12,7 @@ const PjCard = (props) => {
 
   const pj = props.profile
   const token = props.token
+  const permission = props.permission
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -41,6 +43,7 @@ const PjCard = (props) => {
         <Meta title={pj.heroName} description={pj.firstName +' '+ pj.lastName} />
       </Card>
       <HeroCardModal visible = {isModalVisible} setVisible = {setIsModalVisible} hero = {pj} permission={props.permission} token={token}/>
+        {((permission === "admin" || permission === "moderator") && <EditButton pj={pj} token={props.token}/>)}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 import { Form, Input, Button, Select } from 'antd';
 import {useState, useEffect} from 'react'
+import axios from 'axios'
 
 const { Option } = Select;
 
@@ -13,6 +14,9 @@ const tailLayout = {
 };
 
 const Demo = (props) => {
+
+  const token= props.token
+  const userValue=props.userValue
 
   const [user, setUser] = useState({
     _id: null,
@@ -45,7 +49,16 @@ const Demo = (props) => {
 
   const onFinish = (values) => {
     console.log(values);
-  };
+      try {
+        const token = localStorage.getItem('x-access-token')
+        console.log('token', token)
+        const response = axios.put(`http://localhost:8080/api/users/${userValue._id}`, values, {headers:{ Authorization: `${token}`}})
+        console.log(values, response)
+      }catch (error) {
+        throw error
+      }
+    }
+    
 
   const onReset = () => {
 
@@ -101,11 +114,8 @@ const Demo = (props) => {
         }
       </Form.Item>*/}
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" onClick={onFinish}>
           Submit
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Reset
         </Button>
         {/*<Button type="link" htmlType="button" onClick={onFill}>
           Fill form

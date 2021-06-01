@@ -9,7 +9,7 @@ import UserModifyModal from '../Modals/userModifyModal'
 
 const UsersPage = (props) => {
 
-
+  const token = props.token
   const [users, setUsers] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modifyUser, setModifyUser] = useState()
@@ -18,7 +18,10 @@ const UsersPage = (props) => {
 
   const HandleOnDelete = async (event) =>{
     console.log("holaaa", event)
-    const response = await axios.delete(`http://localhost:8080/api/users/${event._id}`)
+    const response = await axios.delete(`http://localhost:8080/api/heroes/${event._id}`, {
+            headers: {
+              Authorization: token
+            }})
     console.log(response)
     getAllBooks()
   }
@@ -34,7 +37,9 @@ const UsersPage = (props) => {
 
   const getAllBooks = async () =>{
   let setear = [] 
-  const response = await axios.get(`http://localhost:8080/api/users`)
+  const response = await axios.get(`http://localhost:8080/api/users`, { headers: {
+    Authorization: token
+  }})
 
   response.data.forEach(item =>{
     const user = {
@@ -107,9 +112,9 @@ const UsersPage = (props) => {
 
   return (
       <div>
-        <h1>Books</h1>
+        <h1>Users</h1>
         <Table dataSource = {users} columns = {columns} rowKey='_id' />
-        {<UserModifyModal visible = {isModalVisible} setVisible = {setIsModalVisible} userValue = {modifyUser}/>}
+        {<UserModifyModal visible = {isModalVisible} setVisible = {setIsModalVisible} userValue = {modifyUser} token={token}/>}
       </div>
     )
 }

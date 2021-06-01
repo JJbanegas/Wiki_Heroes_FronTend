@@ -15,13 +15,13 @@ const userModifyModal = (props) => {
   return (
     <>
       <Modal
-        title= "Holis"
+        title= "Edit user"
         centered
         visible={props.visible}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-      <UserForm userValue = {props.userValue}/>
+      <UserForm userValue = {props.userValue} token={props.token}/>
       </Modal>
     </>
   )

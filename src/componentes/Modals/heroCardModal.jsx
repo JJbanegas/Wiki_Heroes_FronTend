@@ -3,6 +3,7 @@ import React, { Modal } from 'antd'
 import { Image } from 'antd';
 import Comment from '../Comments/Comments'
 import DeleteButton from '../DeleteHeroButton/DeleteHeroButtom'
+import EditButton from '../EditCardButton/EditCardButton'
 
 
 const heroCardModal = (props) => {
@@ -36,6 +37,7 @@ const heroCardModal = (props) => {
         <p>{pj.lastName}</p>
         <p>{pj.universe}</p>
         {((permission === "admin" || permission === "moderator") && <DeleteButton pj={pj} token={props.token}/>)}
+        {((permission === "admin" || permission === "moderator") && <EditButton pj={pj} token={props.token}/>)}
       </Modal>
     </>
   )

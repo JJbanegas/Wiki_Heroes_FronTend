@@ -9,7 +9,11 @@ import {
 } from 'antd';
 import axios from 'axios'
 
-const PostHeroForm = () => {
+const EditHeroForm = (props) => {
+
+    const pj = props.pj 
+    //const token = props.token
+
   const [componentSize, setComponentSize] = useState('default');
 
 
@@ -24,7 +28,7 @@ const PostHeroForm = () => {
     try {
       const token = localStorage.getItem('x-access-token')
       console.log('token', token)
-      const response = axios.post(`http://localhost:8080/api/heroes`, values, {headers:{ Authorization: `${token}`}})
+      const response = axios.put(`http://localhost:8080/api/heroes/${pj._id}`, values, {headers:{ Authorization: `${token}`}})
       console.log(values, response)
     }catch (error) {
       throw error
@@ -55,58 +59,58 @@ const PostHeroForm = () => {
         name="heroName"
         rules={[{ required: true, message: 'Please input the hero name!' }]}
         >
-          <Input />
+          <Input defaultValue={pj.heroName}/>
         </Form.Item>
         <Form.Item 
         label="Firstname"
         name="firstName"
         rules={[{ required: true, message: "Please input the hero's firstname!" }]}>
-          <Input />
+          <Input defaultValue={pj.firstName}/>
         </Form.Item>
         <Form.Item 
         label="Lastname"
         name="lastName"
         rules={[{ required: true, message: "Please input the hero's lastname!" }]}
         >
-          <Input />
+          <Input defaultValue={pj.lastName}/>
         </Form.Item>
         <Form.Item 
         label="universe"
         name="universe"
         rules={[{ required: true, message: "Please input the hero's universe!" }]}>
-          <Input />
+          <Input defaultValue={pj.universe}/>
         </Form.Item>
         <Form.Item 
         label="Age"
         name="age"
         rules={[{ required: true, message: "Please input the hero's age!"}]}
         >
-          <Input />
+          <Input defaultValue={pj.age}/>
         </Form.Item>
         <Form.Item 
         label="Powers"
         name="powers"
         rules={[{ required: true, message: "Please input the hero's powers!" }]}
         >
-          <Input />
+          <Input defaultValue={pj.powers}/>
         </Form.Item>
         <Form.Item 
         label="Achievments"
         name="achievments"
         rules={[{ required: true, message: "Please input the hero's achievments!" }]}
         >
-          <Input />
+          <Input defaultValue={pj.achievments}/>
         </Form.Item>
         <Form.Item 
         label="Image Url"
-        name="imageUrl"
+        name="Image"
         rules={[{ required: true, message: 'input the url of an image of the hero' }]}
         >
-          <Input />
+          <Input defaultValue={pj.Image}/>
         </Form.Item> 
         <Form.Item 
         label="Side"
-        name="Side"
+        name="side"
         rules={[{ required: true, message: "Please input whether he's good or bad" }]}
         >
           <Select>
@@ -120,7 +124,7 @@ const PostHeroForm = () => {
         label="Birth date"
         name="dateBirth"
         >
-          <DatePicker />
+          <DatePicker defaultValue={pj.dateBirth}/>
         </Form.Item>
         <Button type="primary" htmlType="submit" > 
             Submit
@@ -130,4 +134,4 @@ const PostHeroForm = () => {
   );
 };
 
-export default PostHeroForm
+export default EditHeroForm
