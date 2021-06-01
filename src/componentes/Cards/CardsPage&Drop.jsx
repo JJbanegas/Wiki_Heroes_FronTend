@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import CardsList from './CardsList'
 import PostHeroModal from '../Modals/PostHeroModal'
-import PostHero from '../Modals/PostHeroModal';
+//import PostHero from '../Modals/PostHeroModal';
 import { Alert } from 'antd';
 
 
