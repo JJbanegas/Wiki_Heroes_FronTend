@@ -12,6 +12,8 @@ function CardsPage() {
     setPj(item)
   }
 
+
+
   const getAllHeroes = async () =>{
     const order = await localStorage.getItem("x-access-token")
     if(order){
@@ -24,6 +26,8 @@ function CardsPage() {
     getAllHeroes()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+
 
   return(
     <div>

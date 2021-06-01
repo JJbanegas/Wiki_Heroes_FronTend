@@ -1,13 +1,17 @@
 import {Button} from 'antd'
 import axios from 'axios'
-
-const DeleteButton = (pj) => {
+//`http://localhost:8080/api/heroes/${props.pj._id}`
+const DeleteButton = (props) => {
     const handleDelete = async () => {
         try{
-          console.log(pj._id)
-          const token = localStorage.getItem("x-access-token")
-          const response = await axios.delete(`http://localhost:8080/api/heroes/${pj._id}`,{header: { Authorization: `${token}`}})
-          console(response)
+            const token = props.token
+          console.log("id: ",props.pj._id, "token:", token)
+          //const token = localStorage.getItem('x-access-token')
+          const response = await axios.delete(`http://localhost:8080/api/heroes/${props.pj._id}`, {
+            headers: {
+              Authorization: token
+            }})
+          console.log(response)
     
         } catch (error ) {
           throw error

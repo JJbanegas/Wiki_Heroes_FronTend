@@ -35,7 +35,7 @@ const heroCardModal = (props) => {
         <p>{pj.firstName}</p>
         <p>{pj.lastName}</p>
         <p>{pj.universe}</p>
-        {((permission === "admin" || permission === "moderator") && <DeleteButton pj={pj}/>)}
+        {((permission === "admin" || permission === "moderator") && <DeleteButton pj={pj} token={props.token}/>)}
       </Modal>
     </>
   )

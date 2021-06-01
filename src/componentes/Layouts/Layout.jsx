@@ -23,6 +23,7 @@ const PrincipalLayout = () => {
     useEffect(()=>{
         if(token){
             const rol = jwt.decode(token)
+            console.log('tokensito:', token)
             if(rol.role){
                 console.log("rolaso", rol.role.name)
                 setPermission(rol.role.name)
@@ -71,7 +72,7 @@ const PrincipalLayout = () => {
             <div className="site-layout-background" style={{ padding: 150, minHeight: 360 }}>
                 <Routes>
                     <Route path ='/users' element = {<UsersPage />}/>
-                    <Route path ='/heroes' element = {<CardsPage permission={permission} setToken={value => setToken(value) } />}/>
+                    <Route path ='/heroes' element = {<CardsPage permission={permission} setToken={value => setToken(value) } token={token}/>}/>
                     <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>
                     <Route path ='/signup' element = {<SignUp setToken={value => setToken(value)}/>}/>
                 </Routes>

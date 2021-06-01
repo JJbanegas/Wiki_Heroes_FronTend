@@ -10,6 +10,7 @@ const { Meta } = Card;
 const PjCard = (props) => {
 
   const pj = props.profile
+  const token = props.token
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -21,7 +22,6 @@ const PjCard = (props) => {
   const handleDelete = async () => {
     try{
       console.log(pj._id)
-      const token = localStorage.getItem("x-access-token")
       const response = await axios.delete(`http://localhost:8080/api/heroes/${pj._id}`,{header: { Authorization: `${token}`}})
       console(response)
 
@@ -40,7 +40,7 @@ const PjCard = (props) => {
       >
         <Meta title={pj.heroName} description={pj.firstName +' '+ pj.lastName} />
       </Card>
-      <HeroCardModal visible = {isModalVisible} setVisible = {setIsModalVisible} hero = {pj} permission={props.permission}/>
+      <HeroCardModal visible = {isModalVisible} setVisible = {setIsModalVisible} hero = {pj} permission={props.permission} token={token}/>
     </div>
   );
 }

@@ -52,9 +52,11 @@ const CardsPage = (props) => {
 
   useEffect(() =>{
     getAllHeroes()
-    props.setToken(localStorage.getItem("x-access-token"))
+    props.setToken(localStorage.getItem("x-access-token")
+    )
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
 
     function handleButtonClick(e) {
       message.info('Click on right button.');
@@ -96,7 +98,7 @@ const CardsPage = (props) => {
         Filter
       </Dropdown.Button>
       {((props.permission === "moderator" || props.permission === "admin") && <PostHeroModal/>)}
-      <CardsList data = {pj} permission={props.permission}/>
+      <CardsList data = {pj} permission={props.permission} token={props.token}/>
     </Space>
     ) : (<Alert message={error} type="error" />)
 }
