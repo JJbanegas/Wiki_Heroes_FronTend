@@ -14,12 +14,12 @@ const PrincipalLayout = () => {
 
     const[token, setToken] = useState()
     const[permission, setPermission] = useState()
-
+    
     const LogOut = () =>{
         localStorage.clear()
         window.location.assign("/")
     }
-
+    
     useEffect(()=>{
         if(token){
             const rol = jwt.decode(token)
@@ -71,7 +71,7 @@ const PrincipalLayout = () => {
             <div className="site-layout-background" style={{ padding: 150, minHeight: 360 }}>
                 <Routes>
                     <Route path ='/users' element = {<UsersPage />}/>
-                    <Route path ='/heroes' element = {<CardsPage setToken={value => setToken(value)} />}/>
+                    <Route path ='/heroes' element = {<CardsPage permission={permission} setToken={value => setToken(value) } />}/>
                     <Route path ='/' element = {<LogIn setToken={value => setToken(value)}/>}/>
                     <Route path ='/signup' element = {<SignUp setToken={value => setToken(value)}/>}/>
                 </Routes>

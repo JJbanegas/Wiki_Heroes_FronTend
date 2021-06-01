@@ -5,6 +5,9 @@ import axios from 'axios'
 import CardsList from './CardsList'
 import PostHeroModal from '../Modals/PostHeroModal'
 import PostHero from '../Modals/PostHeroModal';
+import { Alert } from 'antd';
+
+
 
 /* Termine por fusionar el Dropdown con el CardsPage porque necesitaba manejar los datos 
 del axios en el mismo lugar, no pude pensar una forma en la cual trabajaran por separado,
@@ -12,8 +15,11 @@ porque Cardspage es el padre, osea que le puede mandar info a travez de las prop
 no podía mandar la info del hijo al padre, no se si hay alguna forma de hacer eso.*/ 
 
 
-const CardsPage = ({setToken}) => {
-    
+const CardsPage = (props) => {
+
+
+
+  const [error, setError] = useState()
   const [pj, setPj] = useState([])
 
   function addNewProfile(item){
@@ -22,10 +28,19 @@ const CardsPage = ({setToken}) => {
 
   const getAllHeroes = async () => {
     const order = localStorage.getItem("x-access-token")
-    console.log('token del local', order)
+    //console.log('token del local', order)
     if(order){
-      const response = await axios.get(`http://localhost:8080/api/heroes`)
-      addNewProfile(response.data)
+        await axios.get(`http://localhost:8080/api/heroes`, {
+        headers: {
+          Authorization: `${order}`
+        }
+      })
+      .then(response => { 
+        addNewProfile(response.data) 
+      }) 
+      .catch(err => { 
+        setError(err)
+      })
     }
   }
 
@@ -34,9 +49,10 @@ const CardsPage = ({setToken}) => {
     addNewProfile(response.data)
   }
 
+
   useEffect(() =>{
     getAllHeroes()
-    setToken(localStorage.getItem("x-access-token"))
+    props.setToken(localStorage.getItem("x-access-token"))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -73,16 +89,16 @@ const CardsPage = ({setToken}) => {
     );
 
 
-    return (
+    return !(error) ? (
         
     <Space wrap>
       <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
         Filter
       </Dropdown.Button>
-      <PostHeroModal/>
+      {((props.permission === "moderator" || props.permission === "admin") && <PostHeroModal/>)}
       <CardsList data = {pj}/>
     </Space>
-    )
+    ) : (<Alert message={error} type="error" />)
 }
 
 
