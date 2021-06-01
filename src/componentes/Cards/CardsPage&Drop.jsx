@@ -96,7 +96,7 @@ const CardsPage = (props) => {
         Filter
       </Dropdown.Button>
       {((props.permission === "moderator" || props.permission === "admin") && <PostHeroModal/>)}
-      <CardsList data = {pj}/>
+      <CardsList data = {pj} permission={props.permission}/>
     </Space>
     ) : (<Alert message={error} type="error" />)
 }

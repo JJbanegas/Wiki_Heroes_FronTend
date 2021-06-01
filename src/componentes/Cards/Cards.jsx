@@ -1,8 +1,9 @@
 import 'antd/dist/antd.css'
 import './Cards.css'
-import { Card } from 'antd';
+import { Card , Button} from 'antd';
 import React, {useState} from 'react';
 import HeroCardModal from '../Modals/heroCardModal'
+import axios from 'axios'
 
 const { Meta } = Card;
 
@@ -17,6 +18,18 @@ const PjCard = (props) => {
     setIsModalVisible(true)
   }
 
+  const handleDelete = async () => {
+    try{
+      console.log(pj._id)
+      const token = localStorage.getItem("x-access-token")
+      const response = await axios.delete(`http://localhost:8080/api/heroes/${pj._id}`,{header: { Authorization: `${token}`}})
+      console(response)
+
+    } catch (error ) {
+      throw error
+    }
+  }
+
   return(
     <div>
       <Card
@@ -27,7 +40,7 @@ const PjCard = (props) => {
       >
         <Meta title={pj.heroName} description={pj.firstName +' '+ pj.lastName} />
       </Card>
-      <HeroCardModal visible = {isModalVisible} setVisible = {setIsModalVisible} hero = {pj}/>
+      <HeroCardModal visible = {isModalVisible} setVisible = {setIsModalVisible} hero = {pj} permission={props.permission}/>
     </div>
   );
 }

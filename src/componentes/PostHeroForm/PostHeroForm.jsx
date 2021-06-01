@@ -26,13 +26,10 @@ const PostHeroForm = () => {
       console.log('token', token)
       const response = axios.post(`http://localhost:8080/api/heroes`, values, {headers:{ Authorization: `${token}`}})
       console.log(values, response)
-      
-      
     }catch (error) {
       throw error
     }
   }
-  
   
 
   return (

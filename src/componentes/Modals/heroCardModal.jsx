@@ -2,9 +2,12 @@ import '../Cards/Cards.css'
 import React, { Modal } from 'antd'
 import { Image } from 'antd';
 import Comment from '../Comments/Comments'
+import DeleteButton from '../DeleteHeroButton/DeleteHeroButtom'
 
 
 const heroCardModal = (props) => {
+  const permission = props.permission
+  console.log(permission)
   console.log(props.hero)
   const pj = props.hero
 
@@ -32,10 +35,7 @@ const heroCardModal = (props) => {
         <p>{pj.firstName}</p>
         <p>{pj.lastName}</p>
         <p>{pj.universe}</p>
-        <Comment/>
-        <Comment/>
-        <Comment/>
-        <Comment/>
+        {((permission === "admin" || permission === "moderator") && <DeleteButton pj={pj}/>)}
       </Modal>
     </>
   )

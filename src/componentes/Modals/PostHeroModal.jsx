@@ -22,7 +22,7 @@ const PostHero = () => {
       <Button type="primary" onClick={showModal}>
         Post Hero
       </Button>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Post a character" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <PostHeroForm/>
       </Modal>
     </>
